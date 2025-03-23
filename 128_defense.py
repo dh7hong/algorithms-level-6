@@ -11,8 +11,10 @@ def solution(n, k, enemy):
         # If soldiers are not enough, try to use an invincibility shield
         if total_soldiers_used > n:
             if k > 0:  # If we still have shields available
-                largest_enemy = -heapq.heappop(max_heap)  # Remove the largest enemy wave
-                total_soldiers_used -= largest_enemy  # Refund those soldiers
+                largest_enemy = -heapq.heappop(max_heap)  
+                # Remove the largest enemy wave
+                total_soldiers_used -= largest_enemy  
+                # Refund those soldiers
                 k -= 1  # Decrease invincibility shield count
             else:
                 return round_num  # Game over, return the last successful round number

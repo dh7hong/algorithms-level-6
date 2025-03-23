@@ -10,7 +10,9 @@ def solution(picks, minerals):
     total_picks = sum(picks)
 
     # Step 1: Divide minerals into groups of 5
-    mineral_groups = [minerals[i:i+5] for i in range(0, len(minerals), 5)]
+    mineral_groups = []
+    for i in range(0, len(minerals), 5):
+        mineral_groups.append(minerals[i:i+5])
 
     # **Edge Case Handling**: Limit groups to the number of available pickaxes
     if len(mineral_groups) > total_picks:
@@ -51,10 +53,12 @@ test_cases = [
     ([2, 1, 0], ["diamond", "diamond", "diamond", "diamond", "diamond", "diamond", "diamond", "diamond", "diamond", "diamond"]),  # Only diamond, Expected 10
     ([0, 0, 1], ["diamond", "diamond", "diamond", "diamond", "diamond"]),  # Only stone pickaxe, Expected 125
     ([1, 0, 0], ["stone", "stone", "stone", "stone", "stone"]),  # Only stone, but diamond pickaxe available, Expected 5
-    ([1, 1, 1], ["iron", "iron", "iron", "iron", "iron", "diamond", "diamond", "diamond", "diamond", "diamond"]),  # Mixed, Expected 11
-    ([3, 3, 3], ["stone"] * 50),  # All stone, Expected 50
+    ([1, 1, 1], ["iron", "iron", "iron", "iron", "iron", "diamond", "diamond", "diamond", "diamond", "diamond"]),  # Mixed, Expected 10
+    ([3, 3, 3], ["stone"] * 50),  # All stone, Expected 45
 ]
 
 # Run tests
 results = [solution(picks, minerals) for picks, minerals in test_cases]
 results
+
+print(results)  # Expected: [12, 50, 10, 125, 5, 11, 50]
